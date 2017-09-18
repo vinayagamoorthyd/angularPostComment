@@ -1,0 +1,45 @@
+<top-nav></top-nav>
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-3">
+    <left-nav></left-nav>
+    </div>
+
+<div class="col-md-9 data-content">
+  <div class="header row">
+      <div class="title col-md-6"><h2>All Comments</h2></div>
+      <div class="col-md-6 icons">
+        <div class="addFilter"><i class="fa fa-edit"></i>Add Filter</div>
+        <div class="addFilter" (click)="formcid='';displayForm=true;"><i class="fa fa-edit"></i>create</div>
+        <div class="addFilter"><i class="fa fa-edit"></i>Referesh</div>
+      </div>
+  </div>
+  <div class="CommentsData">
+    <div *ngIf="displayForm==true">
+      <comment-mange-dir [cid]="formcid" (formData)="insertData($event)" (formDisplay)="displayForm=$event"> </comment-mange-dir>
+    </div>
+  </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" /></th>
+          <th> ID</th>
+          <th>Post</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let comment of comments" >
+          <td><input type="checkbox" /></td>
+          <td>{{comment._id}}</td>
+          <td>{{comment.comment}} </td>
+          <td> {{comment.date}} </td>
+          <td ><a (click)="displayForm=true;formcid=comment._id">Edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+</div>

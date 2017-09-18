@@ -1,0 +1,48 @@
+<top-nav></top-nav>
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-3">
+    <left-nav></left-nav>
+    </div>
+
+<div class="col-md-9 data-content">
+  <div class="header row">
+      <div class="title col-md-6"><h2>All Post</h2></div>
+      <div class="col-md-6 icons">
+        <div class="addFilter"><i class="fa fa-edit"></i>Add Filter</div>
+        <div class="addFilter" (click)="displayForm=true"><i class="fa fa-edit"></i><a (click)="postDisplay=true;">create</a></div>
+        <div class="addFilter"><i class="fa fa-edit"></i>Referesh</div>
+      </div>
+  </div>
+  <div class="CommentsData">
+    <div *ngIf="postDisplay==true">
+      <post-mange-dir [post_Id]="postId" (postDataDind)="insertPostData($event)" (postFormDisplay)="postDisplay=$event"></post-mange-dir>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" /></th>
+          <th> ID</th>
+          <th>Post</th>
+          <th>Published at</th>
+          <th>Avarage Notes</th>
+          <th>Views</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts">
+          <td><input type="checkbox" /></td>
+          <td>{{post._id}}</td>
+          <td>{{post.content}} </td>
+          <td> {{post.published}} </td>
+          <td> {{post.avarageNotes}} </td>
+          <td> {{post.views}} </td>
+          <td><a (click)="postDisplay=true;postId=post._id">Edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
